@@ -1,0 +1,31 @@
+<ng-container *ngIf="isHome">
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</ng-container>
+
+<ng-container *ngIf="!isHome">
+  <header>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row class="flex justify-between">
+        <h1>Library</h1>
+        <div>
+          <a mat-button routerLink="/">Home</a>
+          <a mat-button routerLink="books" routerLinkActive="mat-accent">Books</a>
+          <a mat-button routerLink="about" routerLinkActive="mat-accent">About</a>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-toolbar color="accent">
+      <span> {{ pageTitle }} </span>
+    </mat-toolbar>
+  </header>
+
+  <main>
+    <div class="p-4" [@routeAnimation]="prepareRoute(outlet)">
+      <mat-card>
+        <router-outlet #outlet="outlet"></router-outlet>
+      </mat-card>
+    </div>
+  </main>
+</ng-container>
